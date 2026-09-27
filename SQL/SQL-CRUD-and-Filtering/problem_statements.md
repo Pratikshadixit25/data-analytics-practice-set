@@ -1,4 +1,4 @@
-# SQL CRUD and Filtering Practice
+# SQL CRUD and Filtering Practice Task-1
 
 This task demonstrates basic SQL operations and data filtering using MySQL.
 
