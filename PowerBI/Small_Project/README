@@ -1,0 +1,202 @@
+# Sales & Operations Performance Dashboard (Business Intelligence Dashboard)
+
+## Project Overview
+This project focuses on analyzing sales and operational performance using Microsoft Power BI. The objective is to clean and transform sales data, build a structured data model, create DAX measures, and develop an interactive dashboard to help management understand sales trends, product profitability, regional performance, and order status.
+
+## Business Objectives
+- Analyze total sales and net sales performance.
+- Identify the best-performing product categories and regions.
+- Evaluate product profitability and profit margins.
+- Understand customer segment contributions.
+- Analyze monthly sales growth and decline.
+- Identify data-quality issues and suggest business improvements.
+
+## Tools & Technologies
+- Microsoft Power BI
+- Power Query Editor
+- DAX
+- Microsoft Excel
+
+## Dataset
+The project uses four tables:
+
+| Table | Purpose |
+|---|---|
+| Orders_Raw | Transaction and order-level information |
+| Customers | Customer details and segments |
+| Products | Product details, categories and standard costs |
+| Regions | Regional information |
+
+## Data Cleaning & Transformation
+
+Data cleaning and transformation were performed using Power Query Editor.
+
+| Issue identified | Action taken |
+|---|---|
+| Missing OrderDate values (4) | Retained because original dates were unavailable |
+| Missing CustomerID values (3) | Retained for transparency |
+| Exact duplicate records | Removed 2 duplicate rows |
+| Conflicting duplicate OrderID | Retained for further investigation |
+| Inconsistent OrderStatus values | Standardized text and corrected Return to Returned |
+| Inconsistent DiscountPct values | Converted percentage-point values into decimal percentages |
+| Zero Quantity values (3) | Retained |
+| Negative UnitPrice values (3) | Retained because correct prices were unavailable |
+| Invalid ProductID 999 | Retained for investigation |
+| Data types and text formatting | Reviewed and standardized |
+| SalesAmount | Validated against Quantity, UnitPrice and DiscountPct |
+
+### Additional Data Validation
+- Customer IDs with non-null values were checked against the Customers table.
+- Customer and product dimension tables were checked for duplicate and missing IDs.
+- Product standard costs were checked for missing, zero and negative values.
+- A temporary calculated sales amount was used for validation and then removed.
+
+**Note:** Some source-data issues remain unresolved and should be considered when interpreting profitability and sales results.
+
+## Data Modeling
+
+A star-schema-style data model was developed using the following relationships:
+
+- Customers[CustomerID] → Orders_Raw[CustomerID]
+- Products[ProductID] → Orders_Raw[ProductID]
+- Regions[RegionID] → Orders_Raw[RegionID]
+- DateTable[Date] → Orders_Raw[OrderDate]
+
+A separate DateTable was created using DAX with the following columns:
+
+- Date
+- Year
+- Month Number
+- Month Name
+- Quarter
+- Year-Month
+
+The DateTable was marked as the official date table.
+
+## DAX Measures
+
+The following 12 measures were created:
+
+1. Total Sales
+2. Net Sales
+3. Total Orders
+4. Total Quantity Sold
+5. Estimated Cost
+6. Gross Profit
+7. Profit Margin Percentage
+8. Cancelled and Returned Sales
+9. Return and Cancellation Percentage
+10. Average Sales per Order
+11. Monthly Sales
+12. Month-over-Month Sales Growth Percentage
+
+These measures support the analysis of sales, order volume, estimated costs, profitability, order status and monthly performance.
+
+## Dashboard Features
+
+The single-page dashboard is named **Sales & Operations Performance Dashboard**.
+
+### KPI Cards
+- Total Sales
+- Net Sales
+- Total Orders
+- Gross Profit
+- Profit Margin Percentage
+
+### Visualizations
+1. Monthly Sales Trend – Line Chart
+2. Category-wise Sales Analysis – Bar Chart
+3. Region-wise Sales Analysis – Column Chart
+4. Top 5 Products – Bar Chart
+5. Order Status Analysis – Donut Chart
+
+### Interactive Slicers
+- Year
+- Region
+- Product Category
+- Customer Segment
+- Additional Month-Year filter
+
+All dashboard visuals and KPI cards were tested with slicer selections.
+
+## Business Analysis & Findings
+
+### 1. Which product category generates the highest net sales?
+**Video** category generates the highest net sales.
+
+### 2. Which region performs best?
+**West** is the best-performing region in terms of sales.
+
+### 3. Which five products contribute the most to net sales?
+- Webcam
+- Headset
+- Laptop Stand
+- USB-C Hub
+- Keyboard
+
+### 4. During which months are sales highest and lowest?
+- Highest sales: May 2026
+- Lowest sales: October 2026
+
+### 5. How much sales value is associated with returned and cancelled orders?
+- Returned and Cancelled Sales: Approximately 1.03M
+- Return and Cancellation Percentage: 33.43%
+- Returned Orders: 35
+- Cancelled Orders: 49
+
+### 6. Which customer segment contributes the most to net sales?
+**SMB** is the highest-contributing customer segment.
+
+### 7. Which categories generate strong sales but relatively low profit margins?
+
+| Category | Net Sales | Profit Margin |
+|---|---:|---:|
+| Audio | 149.34K | 1.30% |
+| Office Setup | 95.24K | -16.23% |
+
+Audio has higher net sales but a very low positive margin. Office Setup has a negative profit margin.
+
+### 8. Is the business experiencing month-over-month growth or decline?
+October 2026 recorded a **42.01% month-over-month decline** compared with September 2026.
+
+### 9. What are the major data-quality issues?
+- Missing order dates and customer IDs
+- Duplicate and conflicting order IDs
+- Inconsistent order status values
+- Inconsistent discount formats
+- Zero quantities
+- Negative unit prices
+- Invalid product IDs
+
+### 10. What actions should management take?
+
+**Recommendation 1 – Improve Product Profitability**
+- Review pricing and cost structures for Office Setup.
+- Reassess discount strategies for low-margin categories such as Audio.
+- Monitor product-level profitability.
+
+**Recommendation 2 – Improve Sales and Order Performance**
+- Focus on the Video category, West region and SMB customer segment.
+- Investigate returned and cancelled orders.
+- Identify reasons for order cancellations and returns to reduce avoidable losses.
+
+## Key Business Insights
+
+1. **Category Performance:** Video leads in net sales, while Office Setup and Audio need profitability improvement.
+2. **Regional Performance:** West is the best-performing region and can provide useful practices for improving other regions.
+3. **Sales Trend:** May 2026 recorded the highest sales, while October 2026 recorded the lowest sales and a 42.01% month-over-month decline.
+
+## Data Limitations
+
+Some source-data issues could not be resolved due to missing or unavailable reliable information. In particular:
+- Missing OrderDate values could not be recovered.
+- Conflicting duplicate OrderIDs were retained.
+- Negative UnitPrice values and invalid ProductIDs were retained for investigation.
+
+Profitability figures should be interpreted with these limitations in mind. Estimated Cost is calculated using product standard costs, and its treatment of cancelled/returned orders and unmatched products should be reviewed before using margins for final financial decisions.
+
+## Conclusion
+
+This project demonstrates an end-to-end Power BI workflow, including data cleaning, transformation, data modeling, DAX calculations, interactive dashboard development and business analysis.
+
+The dashboard provides insights into sales trends, product categories, regional performance, customer segments, order statuses and profitability to support data-driven business decisions.
