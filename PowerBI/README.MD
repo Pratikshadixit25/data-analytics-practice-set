@@ -217,11 +217,35 @@ Practiced charts for viewing trends over time and comparing category contributio
 - Compare category contributions using pie and donut charts.
 - Understand how different visual types support data analysis.
 
+## Day 6 – Part 2: Intelligence Functions
+
+**File:** `Day6_Intelligence_Functions.pbix`
+
+### Practice Overview
+
+Continued Day 6 Power BI practice with Intelligence Functions to explore time-based calculations and analyze changes in data over time.
+
+### Topics Covered
+
+- Practicing Intelligence Functions in DAX.
+- Working with date-based calculations.
+- Exploring time-based sales analysis.
+- Understanding how Intelligence Functions support comparisons across different time periods.
+
+### How to Review the Practice
+
+1. Open `Day6_Intelligence_Functions.pbix` in Power BI Desktop.
+2. Explore the report pages and visuals.
+3. Locate the relevant DAX measures in the Data or Model pane.
+4. Select a measure to inspect its formula.
+5. Review the date columns and measures used in the calculations.
+
 ## Tools and Technologies
 
 - Microsoft Power BI Desktop
 - Power Query Editor
 - DAX (Data Analysis Expressions)
+- Microsoft Excel
 - Data Cleaning and Transformation
 - Merge and Append Queries
 - Data Modelling and Relationships
@@ -244,5 +268,3 @@ Practiced charts for viewing trends over time and comparing category contributio
 Continue practicing report design, visual formatting, and dashboard development. Apply these concepts to larger analytical projects and develop reports that communicate useful insights.
 
 This repository documents my hands-on learning and practice as I develop my Power BI and data analytics skills.
-
-
